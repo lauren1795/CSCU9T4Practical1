@@ -31,6 +31,40 @@ public class TrainingRecord {
        return result;
    } // lookupEntry
    
+   public String findAllEntry (int d, int m, int y) {
+       ListIterator<Entry> iter = tr.listIterator();
+       String result = "";
+       while (iter.hasNext()) {
+          Entry current = iter.next();
+          if (current.getDay()==d && current.getMonth()==m && current.getYear()==y) 
+             result = result + current.getEntry(); 
+            }
+       return result;
+   } // findAllEntry
+   
+   public String delete (String n, int d, int m, int y) {
+	   ListIterator<Entry> iter = tr.listIterator();
+       String result = "Failed to remove";
+       while (iter.hasNext()) {
+          Entry current = iter.next();
+          if ((current.getName()).equalsIgnoreCase(n) && current.getDay()==d && current.getMonth()==m && current.getYear()==y) 
+        	  iter.remove();
+             result = "Removed Record"; 
+            }
+       return result;
+   }
+   
+   public Boolean check (String n, int d, int m, int y) {
+	   ListIterator<Entry> iter = tr.listIterator();
+	   Boolean check = false;
+       while (iter.hasNext()) {
+          Entry current = iter.next();
+          if ((current.getName()).equalsIgnoreCase(n) && current.getDay()==d && current.getMonth()==m && current.getYear()==y) {
+        	  check = true;
+            }
+       }
+       return check;
+   }
    // Count the number of entries
    public int getNumberOfEntries(){
        return tr.size();
@@ -39,5 +73,6 @@ public class TrainingRecord {
    public void clearAllEntries(){
        tr.clear();
    }
+   
    
 } // TrainingRecord
